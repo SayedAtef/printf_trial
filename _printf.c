@@ -1,6 +1,6 @@
 #include "main.h"
 
-void printBuffer(char buffer[], int *buff_ind);
+void printBuffer(char buffer[], int *buffIndex);
 
 /**
  * _printf - custom implementaion of printf function
@@ -53,14 +53,14 @@ int _printf(const char *format, ...)
 }
 
 /**
- * printBuffer - Prints the contents of the buffer if it exist
- * @buffer: Array of chars
- * @buff_ind: Index at which to add next char, represents the length.
+ * printBuffer - Prints the buffer contents if there is any
+ * @buffer: Array of chars to be printed
+ * @buffIndex: Index at which to add next char, represents the length.
  */
-void printBuffer(char buffer[], int *buff_ind)
+void printBuffer(char buffer[], int *buffIndex)
 {
-	if (*buff_ind > 0)
-		write(1, &buffer[0], *buff_ind);
+	if (*buffIndex > 0)
+		write(1, &buffer[0], *buffIndex);
 
-	*buff_ind = 0;
+	*buffIndex = 0;
 }
