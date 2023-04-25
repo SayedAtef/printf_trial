@@ -27,7 +27,7 @@
 struct fmt
 {
 	char fmt;
-	int (*fn)(va_list, char[], int, int, int, int);
+	int (*fn)(va_list, char[]);
 };
 
 
@@ -46,16 +46,12 @@ va_list list, char buffer[]);
 /****************** FUNCTIONS ******************/
 
 /* Funtions to print chars and strings */
-int print_char(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_string(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
-int print_percent(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
+int print_char(va_list types, char buffer[]);
+int print_string(va_list types, char buffer[]);
+int print_percent(va_list types, char buffer[]);
 
 /* Functions to print numbers */
-int print_int(va_list types, char buffer[],
-	int flags, int width, int precision, int size);
+int print_int(va_list types, char buffer[]);
 
 /* Funciotns to handle other specifiers */
 int get_flags(const char *format, int *i);
@@ -70,10 +66,8 @@ int print_rot13string(va_list types, char buffer[],
 /* width handler */
 int handle_write_char(char c, char buffer[],
 	int flags, int width, int precision, int size);
-int write_number(int is_positive, int ind, char buffer[],
-	int flags, int width, int precision, int size);
-int write_num(int ind, char bff[], int flags, int width, int precision,
-	int length, char padd, char extra_c);
+int write_number(int is_positive, int ind, char buffer[]);
+int write_num(int ind, char bff[], int length, char padd, char extra_c);
 int write_pointer(char buffer[], int ind, int length,
 	int width, int flags, char padd, char extra_c, int padd_start);
 
