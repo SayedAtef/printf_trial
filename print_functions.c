@@ -13,11 +13,12 @@
  * Return: Number of chars printed
  */
 int print_char(va_list types, char buffer[],
-    int flags, int width, int precision, int size)
+		int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
 	int i = 0;
 	char padd = ' ';
+
 	UNUSED(precision);
 	UNUSED(size);
 	if (flags & F_ZERO)
