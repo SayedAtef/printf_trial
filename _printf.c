@@ -3,14 +3,14 @@
 void printBuffer(char buffer[], int *buff_ind);
 
 /**
- * _printf - Printf function
- * @format: format.
- * Return: Printed chars.
+ * _printf - custom implementaion of printf function
+ * @format: format pointer.
+ * Return: chars that has been printed.
  */
 int _printf(const char *format, ...)
 {
-	int i = 0, printed = 0, printed_chars = 0;
-	int flags, width, precision, size, buff_ind = 0;
+	int i = 0, printed = 0, printedChars = 0;
+	int flags, width, precision, size, buffIndex = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
 
@@ -23,14 +23,14 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] != '%')
 		{
-			buffer[buff_ind++] = format[i];
-			if (buff_ind == BUFF_SIZE)
-				printBuffer(buffer, &buff_ind);
+			buffer[buffIndex++] = format[i];
+			if (buffIndex == BUFF_SIZE)
+				printBuffer(buffer, &buffIndex);
 			printed_chars++;
 		}
 		else
 		{
-			printBuffer(buffer, &buff_ind);
+			printBuffer(buffer, &buffIndex);
 			flags = get_flags(format, &i);
 			width = get_width(format, &i, list);
 			precision = get_precision(format, &i, list);
@@ -40,16 +40,16 @@ int _printf(const char *format, ...)
 				flags, width, precision, size);
 			if (printed == -1)
 				return (-1);
-			printed_chars += printed;
+			printedChars += printed;
 		}
 		i++;
 	}
 
-	printBuffer(buffer, &buff_ind);
+	printBuffer(buffer, &buffIndex);
 
 	va_end(list);
 
-	return (printed_chars);
+	return (printedChars);
 }
 
 /**
